@@ -1,22 +1,35 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity,FlatList } from "react-native";
+import {useDispatch,useSelector} from 'react-redux'
+import {getTodo,TodoList as Tl} from '../redux/TodoSlice'
+import axios from 'axios'
+
 
 const TaskList = () => {
-    const name = 'Excel'
-    const TodoList = [
-        'Hekko',
-        'Hello',
-        'Gengs',
-        'AN',
-        'Nambah Lagi'
-    ]
+    const TodoList = useSelector(Tl)
+    const dispatch = useDispatch()
+    
+    // console.log(TodoList)
+    useEffect(() => {
+        try {
+            axios.get('https://jsonplaceholder.typicode.com/todos').then(
+                (result)=>{
+                    dispatch(getTodo(result.data))
+                }
+            )
+            
+        } catch (error) {
+            console.log(error)
+        }
+       
+    }, [])
     const renderTodo = ({item}) => {
         return(
             <View style={[style.task_bg,style.task_style]}>
                 <View style={style.flex_title}>
-                    <Text style={style.Task_text_title}>{item}</Text>
-                    <View style={style.test_circle}></View>
+                    <Text style={style.Task_text_title}>{item.title}</Text>
                 </View>
+                <View style={style.test_circle}></View>
                 <Text style={style.Task_text_date}>End Date: </Text>
             </View>
         )
@@ -25,10 +38,14 @@ const TaskList = () => {
     return(
         <SafeAreaView style={style.background_c}>
             <View style={style.v_title_center}>
-                <Text style={style.title_center}>Hello {name}, This is your to do Lists</Text>
+                <Text style={style.title_center}>Hello {TodoList.Login.LoginName}, This is your to do Lists</Text>
             </View>
+            {/* <TouchableOpacity onPress={()=>{
+                dispatch(getTodo('oi'))
+                console.log(TodoList)
+                }}><Text>Touch Me</Text></TouchableOpacity> */}
             <FlatList 
-                data={TodoList}
+                data={TodoList.Todo.TodoList.filter(item => item.userId == TodoList.Login.UserID)}
                 renderItem = {renderTodo}
             />
             
@@ -62,17 +79,22 @@ const style = StyleSheet.create({
         color:"white",
         marginTop:20,
         marginLeft:40,
-        fontSize:36
+        fontSize:25,
+        width:500,
+        flexWrap:'nowrap'
     },
     Task_text_date:{
         fontSize:18,
         color:'white',
-        marginTop:60,
+        position:'absolute',
+        bottom:20,
         marginLeft:40,
     },
     flex_title:{
         display:'flex',
         flexDirection:'row',
+        width:280,
+        overflow:'hidden'
     },
     test_circle:{
         backgroundColor:"white",
