@@ -1,112 +1,62 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from "react";
+import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity } from "react-native";
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
-
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
-
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+const App = () => {
+  return(
+    <SafeAreaView style={style.background_c}>
+      <View>
+        <Text style={style.text_style}>To Do App</Text>
+      </View>
+      <View style={style.bottom_login}>
+        <Text>Username</Text>
+        <TextInput style={style.inputColor}/>
+        <Text>Password</Text>
+        <TextInput style={style.inputColor}/>
+        <TouchableOpacity style={style.btnLogin}>
+          <Text style={style.btnLoginText}>Login</Text>
+        </TouchableOpacity>
+      </View>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+const style = StyleSheet.create({
+  background_c:{
+    backgroundColor:"#F0E5CF",
+    flex:1
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
+  text_style:{
+    textAlign:"center",
+    marginTop:"10%",
+    fontSize:20
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  bottom_login:{
+    position:"absolute",
+    bottom:0,
+    marginBottom:200,
+    width:"85%",
+    marginHorizontal:20
   },
-  highlight: {
-    fontWeight: '700',
+  btnLogin:{
+    backgroundColor:"#4B6587",
+    width:180,
+    height:30,
+    alignSelf:"center",
+    borderRadius:50,
+    textAlignVertical:"center"
   },
-});
-
-export default App;
+  btnLoginText:{
+    color:"white",
+    textAlign:"center",
+    flex:1,
+    textAlignVertical:"center",
+    fontSize:20
+  },
+  inputColor:{
+    backgroundColor:"white",
+    flex:1,
+    marginBottom:30,
+    borderRadius:10
+  }
+})
+export default App
