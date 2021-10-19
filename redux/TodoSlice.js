@@ -1,5 +1,4 @@
 import {createSlice} from '@reduxjs/toolkit'
-import axios from 'axios'
 
 const initialState={
     TodoList:[]
@@ -9,8 +8,9 @@ export const TodoSlice = createSlice({
     name:'todo',
     initialState,
     reducers:{
-        getTodo:(s)=>{
-            s.TodoList.push('hoi')
+        getTodo:(s,payload)=>{
+            s.TodoList = payload.payload
+            
         }
     }
 })
