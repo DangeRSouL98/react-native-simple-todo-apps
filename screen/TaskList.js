@@ -6,9 +6,9 @@ import axios from 'axios'
 
 
 const TaskList = () => {
-    const name = 'Excel'
     const TodoList = useSelector(Tl)
     const dispatch = useDispatch()
+    
     // console.log(TodoList)
     useEffect(() => {
         try {
@@ -38,14 +38,14 @@ const TaskList = () => {
     return(
         <SafeAreaView style={style.background_c}>
             <View style={style.v_title_center}>
-                <Text style={style.title_center}>Hello {name}, This is your to do Lists</Text>
+                <Text style={style.title_center}>Hello {TodoList.Login.LoginName}, This is your to do Lists</Text>
             </View>
             {/* <TouchableOpacity onPress={()=>{
                 dispatch(getTodo('oi'))
                 console.log(TodoList)
                 }}><Text>Touch Me</Text></TouchableOpacity> */}
             <FlatList 
-                data={TodoList.Todo.TodoList}
+                data={TodoList.Todo.TodoList.filter(item => item.userId == TodoList.Login.UserID)}
                 renderItem = {renderTodo}
             />
             
