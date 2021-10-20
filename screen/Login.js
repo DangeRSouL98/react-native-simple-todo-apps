@@ -58,9 +58,13 @@ const Login = ({navigation}) => {
 }
 
 const style = StyleSheet.create({
+    defaultFont:{
+      color:"#000000"
+    },
     background_c:{
       backgroundColor:"#F0E5CF",
-      flex:1
+      flex:1,
+      color: "#000000"
     },
     text_style:{
       textAlign:"center",
@@ -99,7 +103,8 @@ const style = StyleSheet.create({
       backgroundColor:"white",
       flex:1,
       marginBottom:30,
-      borderRadius:10
+      borderRadius:10,
+      color:"#000000"
     },
     wrongText:{
       textAlign:'center',

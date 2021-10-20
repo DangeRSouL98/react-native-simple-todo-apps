@@ -7,7 +7,7 @@ import success from '../assets/success.png'
 import failed from '../assets/failed.png'
 
 
-const TaskList = () => {
+const TaskList = ({navigation}) => {
     const TodoList = useSelector(Tl)
     const dispatch = useDispatch()
     
@@ -27,14 +27,14 @@ const TaskList = () => {
     }, [])
     const renderTodo = ({item}) => {
         return(
-            <View style={[style.task_bg,style.task_style]}>
+            <TouchableOpacity style={[style.task_bg,style.task_style]} onPress={() => navigation.navigate('DetailTask')}>
                 <View style={style.flex_title}>
                     <Text style={style.Task_text_title}>{item.title}</Text>
                 </View>
                 {/* <View style={style.test_circle}></View> */}
                 <Image source={item.completed ? success : failed} style={style.status_symbol}/>
                 <Text style={style.Task_text_date}>End Date: </Text>
-            </View>
+            </TouchableOpacity>
         )
     }
     
