@@ -27,7 +27,7 @@ const TaskList = ({navigation}) => {
     }, [])
     const renderTodo = ({item}) => {
         return(
-            <TouchableOpacity style={[style.task_bg,style.task_style]} onPress={() => navigation.navigate('DetailTask')}>
+            <TouchableOpacity style={[style.task_bg,style.task_style]} onPress={() => navigation.navigate('DetailTask', {id: item.id})}>
                 <View style={style.flex_title}>
                     <Text style={style.Task_text_title}>{item.title}</Text>
                 </View>
