@@ -1,8 +1,10 @@
 import React, { useEffect } from "react"
-import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity,FlatList } from "react-native";
+import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity,FlatList,Image } from "react-native";
 import {useDispatch,useSelector} from 'react-redux'
 import {getTodo,TodoList as Tl} from '../redux/TodoSlice'
 import axios from 'axios'
+import success from '../assets/success.png'
+import failed from '../assets/failed.png'
 
 
 const TaskList = () => {
@@ -29,7 +31,8 @@ const TaskList = () => {
                 <View style={style.flex_title}>
                     <Text style={style.Task_text_title}>{item.title}</Text>
                 </View>
-                <View style={style.test_circle}></View>
+                {/* <View style={style.test_circle}></View> */}
+                <Image source={item.completed ? success : failed} style={style.status_symbol}/>
                 <Text style={style.Task_text_date}>End Date: </Text>
             </View>
         )
@@ -96,12 +99,10 @@ const style = StyleSheet.create({
         width:280,
         overflow:'hidden'
     },
-    test_circle:{
-        backgroundColor:"white",
+    status_symbol:{
         width:40,
         height:40,
         position:"absolute",
-        borderRadius:50,
         right:15,
         top:15
     }

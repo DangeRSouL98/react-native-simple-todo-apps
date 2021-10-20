@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
-import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity } from "react-native";
+import { SafeAreaView, View,Text,StyleSheet,TextInput,TouchableOpacity,Image } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import {loginUser,LoginName,setError} from '../redux/LoginSlice'
 import axios from "axios";
+import headerImage from "../assets/header_logo.png"
 
 const Login = ({navigation}) => {
     const dispatch = useDispatch()
@@ -34,10 +35,11 @@ const Login = ({navigation}) => {
 
     return(
         <SafeAreaView style={style.background_c}>
-            <View>
-                <Text style={style.text_style}>To Do App</Text>
-            </View>
             <View style={[style.bottom_login,Login.Login.LoginCondition && style.bottom_login_true]}>
+                <View style={style.title_login}>
+                    <Image source={headerImage} style={style.imgStyle}/>
+                    <Text style={style.text_style}>To Do App</Text>
+                </View>
                 <Text>Username</Text>
                 <TextInput style={style.inputColor} value={username} onChangeText={setUsername}/>
                 <Text>Password</Text>
@@ -62,9 +64,13 @@ const style = StyleSheet.create({
     },
     text_style:{
       textAlign:"center",
-      marginTop:"10%",
-      fontSize:20
+      marginTop:10,
+      fontSize:20,
+      marginBottom:120
     },
+    title_login:{
+      marginLeft:10
+    }, 
     bottom_login:{
       position:"absolute",
       bottom:150,
@@ -97,8 +103,12 @@ const style = StyleSheet.create({
     },
     wrongText:{
       textAlign:'center',
-      marginTop:80,
+      marginTop:70,
       color:'red'
+    },
+    imgStyle:{
+      alignSelf:'center',
+      marginTop:30
     }
   })
 
